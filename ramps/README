@@ -1,0 +1,13 @@
+Naming scheme:
+
+<rampspace>_<filespace>.mkv
+
+<rampspace> determines what color range the actual ramp is in, for 2020 the
+  image is very wide gamut and will clip on conventional monitors.
+
+<filespace> determines the primaries and colormatrix the file itself was
+  encoded with. 2020nc and 2020c should have identical results for correct
+  implementations.
+
+NOTE: 2020_709.mkv has clipped values, because the source ramp is in a wider
+        gamut than the output space.
