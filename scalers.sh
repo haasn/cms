@@ -9,7 +9,7 @@ function usage() {
   exit 1
 }
 
-if [[ $1 ]] && [[ $1 != -* ]] && [[ $1 != --help ]]; then
+if [[ $1 ]] && [[ $1 != -* ]]; then
   img=$1
   imgbase=$(echo $img | sed 's=.*/==;s/\.[^.]*$//')
   shift 1;
@@ -29,7 +29,7 @@ while test $# -gt 0; do
       case "$2" in
         ""|-*) echo "no parameter for $1" ; exit 1 ;;
         *) geometry=$2 ; shift ;;
-      esac ;;
+      esac ; shift ;;
     -t)
       case "$2" in
         ""|-*|*[!.0-9]*) echo "no valid parameter for option $1" ; exit 1 ;;
@@ -42,8 +42,8 @@ while test $# -gt 0; do
       esac ; shift ;;
     -h|--help)
       usage ;;
-    -*) error "invalid option" "$1" ;;
-    *)  error "internal error at" "$1" ;;
+    -*) echo "invalid option: $1" ; exit 1 ;;
+    *)  echo "internal error at $1" ; exit 1 ;;
   esac
   shift
 done
