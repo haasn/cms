@@ -28,7 +28,7 @@ while test $# -gt 0; do
     -g)
       case "$2" in
         ""|-*) echo "no parameter for $1" ; exit 1 ;;
-        *) geometry=$2 ; shift ;;
+        *) geometry=$2 ;;
       esac ; shift ;;
     -t)
       case "$2" in
