@@ -58,7 +58,7 @@ for scaler in $scalers; do
   (mpv --no-config --use-text-osd=yes --pause $img --title="scaler_test" --geometry=$geometry -vo opengl-hq:dither-depth=8:scale=$scaler:cscale=$scaler:dscale=$scaler) &
   id=$!
   sleep $stime
-  import -depth 8 -window 'scaler_test' $imgbase/$scaler.png &
+  import -define png:include-chunk=none -depth 8 -window 'scaler_test' $imgbase/$scaler.png &
   sleep $stime
   kill $id
   echo -e "\n    scale=$scaler\n![]($imgbase/$scaler.png)" >> ${imgbase^}.md
