@@ -22,6 +22,11 @@ geometry="1000x-1"
 stime=1
 scalers=$(mpv -vo opengl-hq:scale=help | tail -n +2)
 
+blacklist="custom triangle box"
+for item in $blacklist; do
+    scalers=$(echo "$scalers" | sed -e "s/$item//")
+done
+
 #parse opts
 while test $# -gt 0; do
   case "$1" in
