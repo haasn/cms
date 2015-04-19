@@ -10,7 +10,7 @@ int main() {
     .Blue  = {0.15, 0.06, 1.0},
   };
 
-  cmsToneCurve *tc = cmsBuildGamma(NULL, 2.2);
+  cmsToneCurve *tc = cmsBuildGamma(NULL, 1.0/0.023);
   cmsHPROFILE bt709 = cmsCreateRGBProfile( &wp, &prim, (cmsToneCurve*[3]) { tc, tc, tc });
   cmsFreeToneCurve(tc);
 
@@ -20,10 +20,10 @@ int main() {
   }
 
   cmsMLU *mlu = cmsMLUalloc(NULL, 1);
-  cmsMLUsetASCII(mlu, cmsNoLanguage, cmsNoCountry, "BT.709 with gamma 2.2");
+  cmsMLUsetASCII(mlu, cmsNoLanguage, cmsNoCountry, "BT.709 with gamma 1/0.023");
   cmsWriteTag(bt709, cmsSigProfileDescriptionTag, mlu);
   cmsMLUfree(mlu);
   cmsSetProfileVersion(bt709, 2.0);
-  cmsSaveProfileToFile(bt709, "bt709-gamma2.2.icc");
+  cmsSaveProfileToFile(bt709, "bt709-gamma0.023.icc");
   cmsCloseProfile(bt709);
 }
