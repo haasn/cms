@@ -25,6 +25,14 @@ void display() {
   glFlush();
 }
 
+void keyboard(unsigned char key, int x, int y)
+{
+    if (key == 27) {
+        //glutLeaveGameMode();
+        exit(0);
+    }
+}
+
 // Initializes GLUT, the display mode, and main window; registers callbacks;
 // enters the main event loop.
 int main(int argc, char** argv) {
@@ -34,6 +42,10 @@ int main(int argc, char** argv) {
   glutInit(&argc, argv);
   glutInitDisplayString("red=10 green=10 blue=10 alpha=0");
   glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+
+  // Use GLUT game mode in forced 30-bit operation
+  //glutGameModeString(":30");
+  //glutEnterGameMode();
 
   // Position window at (80,80)-(480,380) and give it a title.
   glutInitWindowPosition(0, 0);
@@ -50,10 +62,10 @@ int main(int argc, char** argv) {
   // Tell GLUT that whenever the main window needs to be repainted that it
   // should call the function display().
   glutDisplayFunc(display);
+  glutKeyboardFunc(keyboard);
 
   // Tell GLUT to start reading and processing events.  This function
   // never returns; the program only exits when the user closes the main
   // window or kills the process.
   glutMainLoop();
 }
-
