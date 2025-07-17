@@ -113,6 +113,10 @@ int main()
     swch = pl_vulkan_create_swapchain(vk, &(struct pl_vulkan_swapchain_params) {
         .surface = surf,
         .present_mode = VK_PRESENT_MODE_FIFO_KHR,
+        .surface_format = {
+            .format = VK_FORMAT_A2B10G10R10_UNORM_PACK32,
+            .colorSpace = VK_COLOR_SPACE_SRGB_NONLINEAR_KHR,
+        },
     });
 
     if (!swch) {
